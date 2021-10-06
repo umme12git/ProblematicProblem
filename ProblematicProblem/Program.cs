@@ -13,9 +13,10 @@ namespace ProblematicProblem
         static void Main(string[] args)
         {
             Random rng = new Random();
-            Console.Write("Hello, welcome to the random activity generator! \nWould you like to generate a random activity? yes/no: ");
-            bool cont = bool.Parse(Console.ReadLine());
-
+            Console.Write("Hello, welcome to the random activity generator!\n Would you like to generate a random activity? yes/no: ");
+            
+            bool cont = (Console.ReadLine().ToLower() == "yes" ? true : false); 
+            
             Console.WriteLine();
 
             Console.Write("We are going to need your information first! What is your name? ");
@@ -29,7 +30,7 @@ namespace ProblematicProblem
             Console.WriteLine();
 
             Console.Write("Would you like to see the current list of activities? Sure/No thanks: ");
-            bool seeList = bool.Parse(Console.ReadLine());
+            bool seeList = (Console.ReadLine().ToLower() == "sure"? true : false);
 
             if (seeList)
             {
@@ -41,7 +42,7 @@ namespace ProblematicProblem
 
                 Console.WriteLine();
                 Console.Write("Would you like to add any activities before we generate one? yes/no: ");
-                bool addToList = bool.Parse(Console.ReadLine());
+                bool addToList = (Console.ReadLine().ToLower() == "yes" ? true : false);
                 Console.WriteLine();
 
                 while (addToList)
@@ -59,7 +60,7 @@ namespace ProblematicProblem
 
                     Console.WriteLine();
                     Console.WriteLine("Would you like to add more? yes/no: ");
-                    addToList = bool.Parse(Console.ReadLine());
+                    addToList = (Console.ReadLine().ToLower() == "yes" ? true : false);
                 }
             }
             
@@ -89,7 +90,7 @@ namespace ProblematicProblem
 
                 string randomActivity = activities[randomNumber];
 
-                if (userAge > 21 && randomActivity == "Wine Tasting")
+                if (userAge <= 21 && randomActivity == "Wine Tasting")
                 {
                     Console.WriteLine($"Oh no! Looks like you are too young to do {randomActivity}");
                     Console.WriteLine("Pick something else!");
@@ -101,9 +102,9 @@ namespace ProblematicProblem
                     randomActivity = activities[randomNumber];
                 }
 
-                Console.Write($"Ah got it! {randomActivity}, your random activity is: {userName}! Is this ok or do you want to grab another activity? Keep/Redo: ");
+                Console.Write($"Ah got it! {userName}, your random activity is: {randomActivity}! Is this ok or do you want to grab another activity? Keep/Redo: ");
                 Console.WriteLine();
-                cont = bool.Parse(Console.ReadLine());
+                cont = (Console.ReadLine().ToLower() == "redo"? true : false);
             }
         }
     }
